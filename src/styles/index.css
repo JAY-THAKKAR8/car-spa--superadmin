@@ -1,0 +1,123 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* Tailwind reads the design tokens from tokens.css */
+@theme inline {
+  --font-sans: var(--font-family-sans);
+  --font-mono: var(--font-family-mono);
+  --font-display: var(--font-family-display);
+  --font-plate: var(--font-family-plate);
+
+  --color-lacquer: var(--lacquer);
+  --color-lacquer-2: var(--lacquer-2);
+  --color-lacquer-text: var(--lacquer-text);
+  --color-lacquer-muted: var(--lacquer-muted);
+  --color-foam: var(--foam);
+  --color-wax: var(--wax);
+  --color-wax-ink: var(--wax-ink);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-placeholder: var(--placeholder);
+  --color-hover: var(--hover);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-soft-strong: var(--brand-soft-strong);
+  --color-brand-on-soft: var(--brand-on-soft);
+  --color-destructive: var(--destructive);
+
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-success-border: var(--success-border);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-border: var(--warning-border);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-border: var(--danger-border);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-info-border: var(--info-border);
+  --color-purple: var(--purple);
+  --color-purple-soft: var(--purple-soft);
+  --color-purple-border: var(--purple-border);
+  --color-neutral: var(--neutral);
+  --color-neutral-soft: var(--neutral-soft);
+  --color-neutral-border: var(--neutral-border);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: var(--radius);
+  --radius-2xl: 24px;
+
+  --shadow-xs: var(--elev-xs);
+  --shadow-sm: var(--elev-sm);
+  --shadow-md: var(--elev-md);
+  --shadow-lg: var(--elev-lg);
+  --shadow-xl: var(--elev-xl);
+
+  --animate-fade-up: fade-up 0.42s var(--ease-spring) both;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@layer base {
+  * { @apply border-border; }
+  /* Shrinks every rem-based size (text, padding, gaps, radii) ~10% in one place. `zoom` would match the requested look more exactly but also rescales dvh/vh, which clipped the bottom of fixed-height layouts — this avoids that. */
+  html { font-size: 90%; -webkit-text-size-adjust: 100%; }
+  html, body, #root { height: 100%; }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: -0.006em;
+  }
+  h1, h2, h3, h4 { @apply text-foreground font-semibold; font-family: var(--font-family-display); letter-spacing: -0.02em; }
+  ::selection { background: var(--brand-soft-strong); }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+  button:not(:disabled), [role='button']:not([aria-disabled='true']) { cursor: pointer; }
+  * { scrollbar-width: thin; scrollbar-color: #C7D2D5 transparent; }
+  *::-webkit-scrollbar { width: 8px; height: 8px; }
+  *::-webkit-scrollbar-thumb { background: #C7D2D5; border-radius: 999px; }
+}
+
+@layer utilities {
+  .tabular { font-variant-numeric: tabular-nums; }
+  /* Registration numbers render as a small Indian number plate: white plate, dark rim, blue IND strip */
+  .plate {
+    display: inline-flex; align-items: center; gap: 0.4em; max-width: 100%;
+    font-family: var(--font-family-plate); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    color: #111A1F; background: #fff; line-height: 1.35;
+    padding: 0 0.5em 0 0; border: 1.5px solid #1D2A31; border-radius: 5px;
+    box-shadow: inset 0 0 0 1px #fff, 0 1px 0 rgba(14, 42, 48, 0.12);
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  }
+  .plate::before {
+    content: 'IND'; flex: none; align-self: stretch; display: grid; place-items: center;
+    padding: 0 0.32em; font-size: 0.5em; letter-spacing: 0.04em; color: #fff; background: #1F4FB8;
+  }
+  .plate:empty { display: none; }
+  .glass { background: color-mix(in oklab, var(--card) 88%, transparent); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}

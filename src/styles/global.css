@@ -1,0 +1,13 @@
+/* page change: each block fades up in sequence */
+.page-enter > * { animation: page-in 0.55s var(--ease-spring) both; }
+.page-enter > *:nth-child(2) { animation-delay: 0.05s; }
+.page-enter > *:nth-child(3) { animation-delay: 0.1s; }
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.995); filter: blur(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter > * { animation: none !important; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}

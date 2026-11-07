@@ -1,0 +1,96 @@
+/*
+ * Carnmore — design tokens (single source of truth).
+ *
+ * "Lacquer & Foam": a detailing-studio palette.
+ *   Mist     #F1F4F5  page background (cool, like a freshly rinsed panel)
+ *   Paper    #FFFFFF  grouped surfaces
+ *   Lacquer  #0E2A30  deep petrol — sidebar, tab bar, dark moments
+ *   Ceramic  #0B7480  primary actions, links, selection
+ *   Foam     #7CE7D3  live / active accent, only on Lacquer
+ *   Wax      #E8A33D  money & attention
+ *
+ * Shape follows Apple's grouped-list hierarchy: controls 12px, groups 18px, sheets 24px, pills full.
+ * The shadcn names (--background, --primary, …) drive Tailwind via @theme in index.css;
+ * the aliases at the bottom are kept for the 3D floor (facility.css) and 3D bands.
+ */
+:root {
+  /* ---------- surfaces & text ---------- */
+  --background: #F1F4F5;
+  --foreground: #15212A;
+  --card: #FFFFFF;
+  --card-foreground: #15212A;
+  --popover: #FFFFFF;
+  --popover-foreground: #15212A;
+  --muted: #EAEFF0;
+  --muted-foreground: #5E6B73;
+  --subtle-foreground: #3E4C55;
+  --placeholder: #8E9BA2;
+  --hover: #F3F7F7;
+  --border: #E1E7E9;
+  --input: #D3DCDF;
+
+  /* ---------- brand ---------- */
+  --primary: #0B7480;            /* Ceramic — 5.3:1 on white */
+  --primary-hover: #085E68;
+  --primary-foreground: #FFFFFF;
+  --brand: #12A3A0;              /* focus ring, live accents, 3D floor */
+  --brand-soft: #E6F5F4;
+  --brand-soft-strong: #CDEDEA;
+  --brand-on-soft: #075A63;
+  --ring: #12A3A0;
+
+  --lacquer: #0E2A30;
+  --lacquer-2: #143840;
+  --lacquer-line: rgba(255, 255, 255, 0.08);
+  --lacquer-text: #E3EEEE;
+  --lacquer-muted: #8FA9AC;
+  --foam: #7CE7D3;
+  --wax: #E8A33D;
+  --wax-ink: #8A5A0B;
+
+  /* ---------- status (text colours meet AA on their soft backgrounds) ---------- */
+  --success: #13804B; --success-soft: #E8F7EF; --success-border: #B5E6CB;
+  --warning: #A35A00; --warning-soft: #FFF5E3; --warning-border: #F6D9A2;
+  --danger: #C02A2A;  --danger-soft: #FDEEEE;  --danger-border: #F6C9C9;
+  --info: #2557C7;    --info-soft: #EDF3FF;    --info-border: #C3D5FB;
+  --purple: #6B46C1;  --purple-soft: #F3EFFD;  --purple-border: #DCD0F8;
+  --neutral: #3E4C55; --neutral-soft: #EEF2F3; --neutral-border: #DDE4E6;
+  --destructive: #D13434;
+
+  /* ---------- type ---------- */
+  /* Apple devices get SF Pro (HIG); everyone else gets Onest, a close, friendly grotesk */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Onest', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+  --font-family-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Onest', ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-family-plate: 'Barlow Semi Condensed', 'Arial Narrow', sans-serif;
+
+  /* ---------- shape & depth ---------- */
+  --radius: 18px;
+  --elev-xs: 0 1px 1px rgba(14, 42, 48, 0.04);
+  --elev-sm: 0 1px 2px rgba(14, 42, 48, 0.05), 0 2px 6px -2px rgba(14, 42, 48, 0.06);
+  --elev-md: 0 6px 16px -6px rgba(14, 42, 48, 0.12), 0 2px 4px -2px rgba(14, 42, 48, 0.05);
+  --elev-lg: 0 18px 36px -12px rgba(14, 42, 48, 0.2), 0 4px 8px -4px rgba(14, 42, 48, 0.06);
+  --elev-xl: 0 30px 60px -20px rgba(14, 42, 48, 0.35), 0 8px 16px -8px rgba(14, 42, 48, 0.1);
+
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);   /* iOS sheet curve */
+
+  --sidebar-width: 248px;
+  --sidebar-width-collapsed: 76px;
+
+  /* ---------- aliases used by the 3D floor + 3D bands (do not remove) ---------- */
+  --bg: var(--background);
+  --surface: var(--card);
+  --surface-elevated: #F7FAFA;
+  --surface-sunken: var(--muted);
+  --text: var(--foreground);
+  --text-secondary: var(--subtle-foreground);
+  --text-muted: var(--muted-foreground);
+  --text-disabled: var(--placeholder);
+  --accent: var(--brand);
+  --accent-2: #3CC7BE;
+  --accent-ink: #FFFFFF;
+  --accent-soft: rgba(18, 163, 160, 0.12);
+  --font-body: var(--font-family-sans);
+  --font-display: var(--font-family-display);
+  --gradient-accent: linear-gradient(180deg, #12A3A0 0%, #0B7480 100%);
+}
